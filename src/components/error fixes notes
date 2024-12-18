@@ -1,0 +1,82 @@
+The error 
+ERROR ( ==> ) "Actions must be plain objects. Use custom middleware for async actions" occurs because Redux only expects plain objects as actions, but your code is likely dispatching something that isn't a plain object, such as a function or a promise.
+
+To resolve this issue, you need to ensure that your actions are plain objects or you need to use middleware like **Redux Thunk** or **Redux Saga** for handling asynchronous actions.
+
+Here’s how you can handle it:
+
+### 1. **Using Redux Thunk for Async Actions:**
+
+First, you need to install `redux-thunk` middleware:
+
+```bash
+npm install redux-thunk
+```
+
+Then, apply the middleware when creating the Redux store. Update your store configuration to use `redux-thunk`:
+
+#### Update `store.js`:
+
+```javascript
+import { createStore, applyMiddleware } from 'redux';
+import logger from 'redux-logger';
+import thunk from 'redux-thunk'; // Import redux-thunk
+import { rootReducer } from './root.reducer';
+
+let store = createStore(rootReducer, applyMiddleware(thunk, logger)); // Apply thunk and logger middleware
+
+export default store;
+```
+
+#### Dispatching an Async Action with Thunk:
+
+```javascript
+import { BUY_PIZZA } from "./pizzahut.actionType";
+
+// Action creator with async logic
+let buyPizzaAsync = () => {
+    return (dispatch) => {
+        setTimeout(() => {
+            dispatch({
+                type: BUY_PIZZA,
+            });
+        }, 2000); // Simulating an async call (e.g., API request)
+    };
+};
+
+export { buyPizzaAsync };
+```
+
+Now, you can dispatch `buyPizzaAsync()` instead of a plain action:
+
+```javascript
+// Inside your component:
+import { useDispatch } from 'react-redux';
+import { buyPizzaAsync } from './redux/pizzahut.actions';
+
+let Pizzahut = () => {
+    const dispatch = useDispatch();
+
+    const buyPizza = () => {
+        dispatch(buyPizzaAsync()); // Dispatch the async action
+    };
+
+    return (
+        <div>
+            <button onClick={buyPizza}>Buy Pizza</button>
+        </div>
+    );
+};
+```
+
+### 2. **Using Redux-Saga (optional, if needed for complex async flows):**
+
+If your async logic becomes more complex, consider using **Redux-Saga**. It's more powerful for handling async flows but requires a different approach than `redux-thunk`.
+
+### Summary:
+
+- Install and apply `redux-thunk` middleware.
+- Change your action creators to return functions (for async actions).
+- Ensure your actions are plain objects when dispatched.
+
+Let me know if you need further help setting this up!

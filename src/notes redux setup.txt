@@ -1,0 +1,44 @@
+Redux
+-----
+-> Store -> the global Object containts whole application data / state
+-> Reducer -> the function to update / modify the state / store
+-> Action -> the instuction to update / fetch the state data to component
+-> Dispath -> the instuction
+-> ActionTypes -> Type of Action (Interface)
+-> InitialState -> default state data
+-> StateType -> Type of State of Each Component (Interface)
+
+React with Redux Setup
+----------------------
+redux
+react-redux
+redux-devtools-extension
+redux-logger
+redux-thunk
+
+@types/redux
+@types/react-redux
+@types/redux-devtools-extension
+@types/redux-logger
+@types/redux-thunk
+
+npm install redux react-redux redux-devtools-extension redux-logger redux-thunk @types/redux @types/react-redux @types/redux-devtools-extension @types/redux-logger @types/redux-thunk
+ OR
+$ npm i redux react-redux redux-logger
+for react devtool steps
+
+=>) Use --legacy-peer-deps
+=>) If you want to force the installation despite the version conflict:
+
+$ npm install redux-devtools-extension --legacy-peer-deps
+$ npm i redux-devtools-extension
+
+
+
+
+
+
+
+
+
+
