@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { BUY_PIZZA } from "./redux/pizzahut.actionType";
+import { buyPizza } from "./redux/pizzahut.action";
 
 let Pizzahut = () => {
 
@@ -10,9 +10,9 @@ let Pizzahut = () => {
 
     const dispatch = useDispatch(); // Dispatch actions
 
-    let buyPizza = () => {
-        dispatch({ type: BUY_PIZZA })/*  it working */
-        /*  dispatch(buyPizza); */ // for this error comes so solution npm install redux-thunk
+    let handleBuyPizza = () => {
+        //dispatch({ type: BUY_PIZZA })/*  it working */
+          dispatch(buyPizza());  // for this error comes so solution npm install redux-thunk
 
     }
     return (
@@ -41,7 +41,7 @@ let Pizzahut = () => {
                                         </p>
 
 
-                                        <button className="bg-danger h6 text-white" onClick={buyPizza}>buy pizza</button>
+                                        <button className="bg-danger h6 text-white" onClick={handleBuyPizza}>buy pizza</button>
                                     </div>
                                 </div>
                             </div>

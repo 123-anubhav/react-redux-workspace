@@ -30,8 +30,9 @@ for react devtool steps
 =>) Use --legacy-peer-deps
 =>) If you want to force the installation despite the version conflict:
 
-$ npm install redux-devtools-extension --legacy-peer-deps
+$ npm install redux-devtools-extension --legacy-peer-deps [works]
 $ npm i redux-devtools-extension
+
 
 
 
